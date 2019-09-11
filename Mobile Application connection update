@@ -1,0 +1,5 @@
+I have successfully connected the app to AWS server. (9/4/19)
+Encountering a new problem: the app is sending the wrong info to AWS DynamoDB
+Currently rewriting code for the backend of the app
+Fixing toggle switch for moving the blinds up and down (there is currently no middle option the user can choose so I am changing it to up and down buttons.
+After reprogramming backend--will work on HTTP requests from ESP32
