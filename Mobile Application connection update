@@ -3,3 +3,8 @@ Encountering a new problem: the app is sending the wrong info to AWS DynamoDB
 Currently rewriting code for the backend of the app
 Fixing toggle switch for moving the blinds up and down (there is currently no middle option the user can choose so I am changing it to up and down buttons.
 After reprogramming backend--will work on HTTP requests from ESP32
+
+09/25/19
+reprogrammed back end of app
+currently programming ESP32
+goal by presentation: have blinds built
