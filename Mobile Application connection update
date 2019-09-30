@@ -12,3 +12,6 @@ finished fixing app. it now sends correct data to db
 reprogrammed back end of app
 currently programming ESP32
 goal by presentation: have blinds built
+
+09/30/19
+deployed new back end of app, which for some strange reason has caused problems with the front end. 
