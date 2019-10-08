@@ -16,3 +16,7 @@ goal by presentation: have blinds built
 09/30/19
 deployed new back end of app, which for some strange reason has caused problems with the front end. 
 ESP32 completely coded and connected, but cant start testing until front end is fixed
+
+10/09/19
+app is fully integrated with ESP32 micro controller. 
+next step is to help Keith integrate with Nano.
