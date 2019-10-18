@@ -20,3 +20,10 @@ ESP32 completely coded and connected, but cant start testing until front end is 
 10/09/19
 app is fully integrated with ESP32 micro controller. 
 next step is to help Keith integrate with Nano.
+
+10/18/19
+changed format of the array that is sent to keiths system. it is a lot easier to handle now.
+I finally finished building the frame for the blinds. Tomorrow I am painting it and mounting the blinds and am going to start 3d modeling 
+for pieces that we need to be 3D printed to mount the motors to the blinds. We will find out this weekend if the motors can actually
+lift the blinds. If they cant we will need stronger motors because this is going to be our demo set up. The blinds and frame will
+not be changing after I am finished with them.
