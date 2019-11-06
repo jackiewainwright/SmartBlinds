@@ -5,3 +5,17 @@
 9/25/2019:  One week later, small progress has been made. Mutaz made sure that we understand the importance of time management. I am still waiting to be able to implement my part of the project.
 
 10/2/2019:  Frame has been built, others are starting to make more progress. I should be close to being able to implement my subsystem. At this point I just need the motors to be attached to the blinds and I will be able to make real progress finally. 
+
+10/9/2019:  Minimal progress made, working with motors subsystem to help out that subsystem
+
+10/16/2019: Took over motor subsystem in order to get a clear idea of how long it would really take.
+
+10/19/2019: Motors changed to NEMA-17, motor drivers changed in order to handle this as well.
+
+10/21/2019: Working towards lift system and buying new power supply (12V) for the NEMA-17's.
+
+10/23/2019: Most parts revamped and ready to finally make serious hardware progress. Mostly waiting for motors subsystem to solder today.
+
+10/30/2019: Mounted motors and drilled holes for the motors to pull the blinds with. Next step is to mount the motor to rotate the blinds.
+
+11/6/2019:  Adjusting code in order to properly work with new layout of the sensory and motor subsystem layouts. Remounted one motor to limit strain and even out load on each motor.
