@@ -1,38 +1,46 @@
 
+/*
+ * this will be loaded onto my arduino uno that will have the nRF24L01, thermistors, and photoresistors hooked up to it
+ */
+
 //these are the required libraries used by the wireless module and
 //the adafruit 2.8" tft touchscreen
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
+#include <Adafruit_GFX.h>
 #include <Wire.h>
+#include <Adafruit_ILI9341.h>
+#include <Adafruit_STMPE610.h>
 
 //initialize the parts for the nRF24L01
-RF24 radio(7, 8); // CE, CSN          9,8 for uno, 7,8 for nano
-const byte address[6] = "00011";
+RF24 radio(9, 8); // CE, CSN          9,8 for uno, 7,8 for nano
+const byte address[6] = "00001";
 
 //needed parts for the thermistor readouts
-const int ThermistorIn = 2;        //two thermistors facing outside                                               (slot 1 on nano, slot 0 on uno)
+const int ThermistorIn = 0;        //two thermistors facing outside                                               (slot 1 on nano, slot 0 on uno)
 int V1;                            //the readout from the thermistor pins
-float Resistor = 100000;            //resistor value for all thermistors will be the same
+float Resistor = 9500;            //resistor value for all thermistors will be the same
 float R1, logR1;               //initiating the varaibles that will be used throughout the program
 float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;     //constants for the conversion
 
+float Uno_Data[8];
 
 int i = 0; 
 int k = 0; 
-float temp [20];
-float photo [20];
+float temp [5];
+float photo [5];
 float avg_temp = 75.00; 
-float avg_light = 7.00; 
+float avg_light = 50.00; 
 
-float temp_angle = 15.00; float light_angle = 15.00; 
+float temp_angle = 90.00; float light_angle = 90.00; 
 float temp_height = 0.00; float light_height = 0.00;
 
 float light_error; 
 float temp_error;
 
 //Needed parts for the photoresistor readouts
-const int Photo1 = 3;       //two photoresistors taking the last two analog slots of the Arduino nino nino Uno      (slot 0 for nano, slot 1 for uno)
+const int Photo1 = 1;       //two photoresistors taking the last two analog slots of the Arduino nino nino Uno      (slot 0 for nano, slot 1 for uno)
 float light_intensity; 
 
 float temperature;
@@ -60,7 +68,8 @@ void loop() {
   temperature = (temperature * 9.0)/ 5.0 + 32.0;                                          //temp in farenheit nino nino
 
   light_intensity = analogRead(Photo1);
-  
+  light_intensity = (light_intensity / 1024.00);
+  light_intensity = (100.00 - (light_intensity * 100.00));
 
   if(temperature <= 0.00){
     temp_error = 1.00;
@@ -79,24 +88,24 @@ void loop() {
     light_error = 0.00;  
   }
 
-  if(i < 5){
+  if(i < 4){
     temp[i] = temperature;
     photo[i] = light_intensity;
     i++; 
   }
-  if(i >= 5){
+  if(i >= 4){
     temp[i] = temperature;
     photo[i] = light_intensity;
     i = 0; 
     k = 0;
     float sum_temp = 0.00; float sum_photo = 0.00;
-    while(k <= 5){
+    while(k <= 4){
       sum_temp = (sum_temp + temp[k]);
       sum_photo = (sum_photo + photo[k]);
       k++;
     }
-    avg_temp = (sum_temp / 6);
-    avg_light = (sum_photo / 6);
+    avg_temp = (sum_temp / 5);
+    avg_light = (sum_photo / 5);
     k = 0;
     Serial.print("average temperature is "); Serial.print(avg_temp); Serial.print("\n");
     Serial.print("average light is "); Serial.print(avg_light); Serial.print("\n");
@@ -105,50 +114,50 @@ void loop() {
     //now we list our possible conditions for different blind height and angle values 
     //slightly warm
     if(avg_temp >= 75.00 && avg_temp < 85.00){
-      temp_angle = (125.00+(avg_temp - 75.00)); //slats tilted upwards
+      temp_angle = (110.00+(avg_temp - 75.00)); //slats tilted upwards
       temp_height = 0.00; //fully lowered
     }
       
     //very warm
     if(avg_temp >= 85.00){
       temp_height = 0.00; //fully closed
-      temp_angle = (165.00); //slats tilted upwards
+      temp_angle = (140.00); //slats tilted upwards
     }
       
     //slightly cold
     if(avg_temp < 75.00 && avg_temp > 65.00){
-      temp_angle = (55.00-(75.00 - avg_temp)); //slats tilted downwards
+      temp_angle = (60.00-(75.00 - avg_temp)); //slats tilted downwards
       temp_height = 0.00; //fully closed
     }
       
     //very cold
     if(avg_temp <= 65.00){
-      temp_angle = (15.00); //slats tilted downwards
+      temp_angle = (30.00); //slats tilted downwards
       temp_height = 0.00; //fully closed
     }
 
       
     //dim
-    if(avg_light > 7.00 && avg_light < 17.00){
-      light_angle = (55.00 - (17.00 - avg_light)); //slats tilted down
+    if(avg_light > 20.00 && avg_light < 40.00){
+      light_angle = (75.00 - (40.00 - avg_light)); //slats tilted down
       light_height = 0.00; //fully lowered
     }
       
     //dark
-    if(avg_light <= 7.00){
-      light_height = 100.00; //fully raised
-      light_angle = 90.00; //slats flat
+    if(avg_light <= 20.00){
+      light_height = 0.00; //fully lowered
+      light_angle = 30.00; //slats flat
     }
       
     //light
-    if(avg_light < 30.00 && avg_light >= 17.00){
-      light_angle = (125.00 - (avg_light - 17.00)); //slats tilted downwards
+    if(avg_light < 70.00 && avg_light >= 40.00){
+      light_angle = (100.00 + (avg_light - 40.00)); //slats tilted downwards
       light_height = 0.00; //fully closed
     }
       
     //bright
-    if(avg_light >= 30.00){
-      light_angle = (125.00); //slats tilted downwards
+    if(avg_light >= 70.00){
+      light_angle = (140.00); //slats tilted downwards
       light_height = 0.00; //fully closed
     }
     Serial.print("slat angle for photo mode: "); Serial.print(light_angle); Serial.print("\n");
@@ -158,8 +167,11 @@ void loop() {
       
    }
 
+    float   SelectState = 3; //1 for temp, 2 for photo, 3 for manual
+    float   ManualHeightState = 0;  //1 for up, 0 for down
+
    radio.stopListening();
-   float  UNO_Data[] = { temperature , light_intensity , temp_angle , temp_height , light_angle , light_height , temp_error , light_error };
+   float  UNO_Data[] = { temperature , light_intensity , temp_angle , temp_height , light_angle , light_height , SelectState , ManualHeightState };
    radio.write(&UNO_Data, sizeof(UNO_Data));
   
    Serial.print("transmitted data: \n"); 
