@@ -1,26 +1,18 @@
 
-/*
- * this will be loaded onto my arduino uno that will have the nRF24L01, thermistors, and photoresistors hooked up to it
- */
 
-//these are the required libraries used by the wireless module and
-//the adafruit 2.8" tft touchscreen
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
-#include <Adafruit_GFX.h>
-#include <Wire.h>
-#include <Adafruit_ILI9341.h>
-#include <Adafruit_STMPE610.h>
 
 //initialize the parts for the nRF24L01
-RF24 radio(9, 8); // CE, CSN          9,8 for uno, 7,8 for nano
+RF24 radio(7, 8); // CE, CSN         
 const byte address[6] = "00001";
 
 //needed parts for the thermistor readouts
-const int ThermistorIn = 0;        //two thermistors facing outside                                               (slot 1 on nano, slot 0 on uno)
+const int ThermistorIn = 2;        
+(slot 1 on nano, slot 0 on uno)
 int V1;                            //the readout from the thermistor pins
-float Resistor = 9500;            //resistor value for all thermistors will be the same
+float Resistor = 100000;            //resistor value for all thermistors will be the same
 float R1, logR1;               //initiating the varaibles that will be used throughout the program
 float c1 = 1.009249522e-03, c2 = 2.378405444e-04, c3 = 2.019202697e-07;     //constants for the conversion
 
@@ -40,7 +32,7 @@ float light_error;
 float temp_error;
 
 //Needed parts for the photoresistor readouts
-const int Photo1 = 1;       //two photoresistors taking the last two analog slots of the Arduino nino nino Uno      (slot 0 for nano, slot 1 for uno)
+const int Photo1 = 3;       
 float light_intensity; 
 
 float temperature;
@@ -68,8 +60,8 @@ void loop() {
   temperature = (temperature * 9.0)/ 5.0 + 32.0;                                          //temp in farenheit nino nino
 
   light_intensity = analogRead(Photo1);
-  light_intensity = (light_intensity / 1024.00);
-  light_intensity = (100.00 - (light_intensity * 100.00));
+  light_intensity = (light_intensity / 10.00);
+//  light_intensity = (100.00 - (light_intensity * 100.00));
 
   if(temperature <= 0.00){
     temp_error = 1.00;
@@ -82,7 +74,7 @@ void loop() {
     Serial.print("error...no photoresistor detected \n");  
   }
   if(temperature >= 0.01){
-    temp_error = 0.00;  
+    temp_error = 0.00; 
   }
   if(light_intensity >= 0.2){
     light_error = 0.00;  
