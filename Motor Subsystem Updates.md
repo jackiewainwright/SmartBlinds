@@ -45,3 +45,11 @@ It turned out we're missing a shaft adaptor, so we couldn't test rotation. We kn
 11-03
 I accidentally burned out the battery charging board in a puff of smoke, so that's fun. However, I managed to test it enough to determine that the voltage boosting will be good enough (4.7V at 50mA), and it does charge the battery. I bought a new one and it'll ship on the 5th. 
 
+11-19
+The A4988 motor drivers burn out really easily, and I've had to buy 5 new ones. Made a new protoboard, fitted with female headers so I can add and replace driver boards whenever they burn out again.
+
+11-24
+Keith's motor program is complete and validated, and videos were made. The rotation is calibrated to within 5°.
+
+11-25
+The demo is tomorrow, and every part of the motor subsystem works.
