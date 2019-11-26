@@ -74,9 +74,9 @@ delay (2000);
     Serial.print("\nTransmitted temperature of system 2: ");
      Serial.print(UNO_Data[0]);
     Serial.println(" F"); 
-       radio.read(&value, sizeof(value));
+       //radio.read(&value, sizeof(value));
 Serial.print("\nTransmitted light intensity of system 2: ");
-     Serial.print(UNO_Data[0]);
+     Serial.print(UNO_Data[1]);
     delay (1000);
     
 
