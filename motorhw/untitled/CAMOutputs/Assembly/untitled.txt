@@ -1,0 +1,16 @@
+Partlist exported from /home/user/EAGLE/projects/motorhw/untitled.sch at 10/21/19 2:08 PM
+
+Qty Value     Device                    Package      Parts              Description                    A                    MF MPN OC_FARNELL OC_NEWARK POPULARITY PROD_ID   VALUE
+4   100k      100KOHM-0603-1/10W-1%     0603         R1, R5, R6, R7     100kΩ resistor                                                                             RES-07828 100k 
+2   1nF       1.0NF/1000PF-0603-50V-10% 0603         C1, C3             1nF/1,000pF ceramic capacitors                                                             CAP-07886 1nF  
+1   5V        PINHD-1X1                 1X01         JP13               PIN HEADER                                                                      64                        
+1   :)        ARDUINO_NANO              ARDUINO_NANO ARDUINO_NANO1      Arduino Nano V3.0                                                                                         
+2   ULN2003AN ULN2003AN                 DIL16        IC1, IC2           DRIVER ARRAY                   One of two available                                                       
+2   gnd       PINHD-1X1                 1X01         JP12, JP14         PIN HEADER                                                                      64                        
+3   i         PINHD-1X1                 1X01         JP11, JP15, JP16   PIN HEADER                                                                      64                        
+2   i         PINHD-1X4                 1X04         JP5, JP17          PIN HEADER                                                                      91                        
+1   io        FE05-2                    FE05-2       SV1                FEMALE HEADER                                              unknown    unknown   3                         
+2   o         PINHD-1X1                 1X01         JP9, JP10          PIN HEADER                                                                      64                        
+4   o         PINHD-1X4                 1X04         JP2, JP3, JP4, JP8 PIN HEADER                                                                      91                        
+3   o         PINHD-1X5                 1X05         JP1, JP6, JP7      PIN HEADER                                                                      69                        
+2   p         NMOSSOT89                 SOT89        T1, T2             MOS FET                                                    unknown    unknown   2                         
