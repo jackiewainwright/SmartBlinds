@@ -1,0 +1,39 @@
+{
+  "main": "src/index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
+    "build": "rm -rf dist && expo export --public-url https://s3.amazonaws.com/expo-app"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@expo/samples": "2.1.1",
+    "axios": "^0.18.0",
+    "expo": "^32.0.0",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.3",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.25",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-circular-slider": "arielweinberger/react-native-circular-slider-expo#master",
+    "react-navigation": "^3.0.9",
+    "rxjs": "^6.4.0",
+    "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.4.0",
+    "babel-preset-expo": "^5.0.0",
+    "babel-preset-mobx": "^2.0.0",
+    "expo-cli": "^2.15.4",
+    "jest-expo": "^32.0.0",
+    "metro-react-native-babel-preset": "^0.53.1"
+  },
+  "private": true
+}
